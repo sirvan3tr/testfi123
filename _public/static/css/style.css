@@ -1,0 +1,270 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #000;
+  background-color: #E8E8E8;
+	margin: 0px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* General
+------------------------------------------------------ */
+.clear {
+	clear: both;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+h3.blue,
+h3 {
+  font-size: 25px;
+  color: #3C9E9E;
+  padding-bottom: 0px;
+  margin: 20px 0 10px 0;
+}
+h3.blue {
+  color: #5F88D3;
+}
+h1 {
+  color: #393836;
+  margin: 20px 0 30px 0;
+}
+.h4, h4 {
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Sree Krushnadevaraya', serif;
+}
+.zero-margtop {
+  margin-top: 0 !important;
+}
+.no-border {
+  border: 0px !important;
+}
+.white-col {
+  background-color: #fff;
+  padding: 20px;
+}
+.blue-col {
+  background-color: #5F88D3;
+  padding: 20px;
+  color: #fff;
+}
+.red-col {
+  background-color: #C8034E;;
+  padding: 20px;
+  color: #fff;
+}
+span.stepnum {
+  background-color: #3C9E9E;
+  padding: 5px 16px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+}
+/* Bootstrap re-styling
+------------------------------------------------------ */
+.form-horizontal .control-label {
+  font-size: 12px;
+}
+.tab-content.customseller {
+  padding: 20px;
+  border: 0;
+  background-color: #fff;
+}
+.navbar {
+  position: relative;
+  min-height: 50px;
+  border: 0;
+  border-radius: 0px;
+  //border-bottom: 1px solid #12C7A4;
+}
+.navbar-default {
+  background: #fff;
+    border-top: 1px solid transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.navbar-default .navbar-brand {
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+.navbar-default .navbar-brand img {
+  width: 100px;
+  margin-top: -9px;
+  margin-right: -23px;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #333;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #000;
+  background-color: transparent;
+}
+.alertinfo {
+  color: #FFFFFF;
+  background-color: #12C7A4;
+  border: 0px;
+  border-radius:2px;
+}
+.alertinfoinvestor {
+  color: #FFFFFF;
+  background-color: #3C3C3C;
+  border: 0px;
+  border-radius: 4px 4px 0 0;
+}
+.alertinfoinvestor a,
+.alertinfo a {
+  color: #fff;
+}
+.alert {
+  padding: 10px;
+}
+.investorcash {
+  color: #FFFFFF;
+  background-color: #621616;
+  border: 0px;
+  border-radius: 0;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 0;
+  margin-top: -19px;
+
+}
+.btn {
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 12px;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 0;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  min-width: 0;
+  -webkit-transition: color .15s ease-in-out,background .15s ease-in-out,border .15s ease-in-out;
+  -moz-transition: color .15s ease-in-out,background .15s ease-in-out,border .15s ease-in-out;
+  -ms-transition: color .15s ease-in-out,background .15s ease-in-out,border .15s ease-in-out;
+  -o-transition: color .15s ease-in-out,background .15s ease-in-out,border .15s ease-in-out;
+  transition: color .15s ease-in-out,background .15s ease-in-out,border .15s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  ms-backface-visibility: hidden;
+}
+.btn-default {
+  border: 1px solid #3C9E9E;
+  color: #3C9E9E;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 28px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  border: 0px;
+  border-bottom: 1px solid #fff;
+}
+.nav-tabs {
+  border: 0;
+}
+table.table tr td {
+  padding: 3px 6px;
+  font-size: 13px;
+  border-right: 1px solid #DBDBDB;
+}
+table.table tr th {
+  border-right: 1px solid #DBDBDB;
+  padding: 3px 6px;
+}
+/* 
+------------------------------------------------------ */
+#pheader {
+  background: url(http://subtlepatterns.com/patterns/congruent_pentagon.png);
+    padding: 10px;
+  height: 50px;
+    margin-bottom: 20px;
+}
+/* Home Invoice Statistics
+------------------------------------------------------ */
+.invoice_stats_parent {
+  min-height: 90px;
+}
+.invoice_stats_parent .invoice_stat_el {
+  color: #5F88D3;
+  float: left;
+  text-align: center;
+  font-size: 10px;
+  width: 19%;
+  background-color: #fff;
+  padding: 8px;
+  margin-right: 1%;
+  border-radius: 6px;
+  border: 1px solid #5F88D3;
+}
+.invoice_stats_parent .invoice_stat_el span.invoice_stat_no {
+  font-family: 'Sree Krushnadevaraya', serif;
+  display: block;
+  font-size: 41px;
+  line-height: 25px;
+  color: #5F88D3;
+}
+.invoice_stats_parent .invoice_stat_el span.invoice_stat_val {
+  font-family: 'Sree Krushnadevaraya', serif;
+  display: block;
+  font-size: 18px;
+  line-height: 25px;
+  color: #5F88D3;
+}
+/* Investor Homepage Panel
+------------------------------------------------------ */
+.inv-cont-main {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.inv-cont-main table.table {
+  margin: 0;
+}
+.inv-cont {
+  border: 1px solid #ccc;
+  padding: 4px;
+  margin: 2px 0;
+  background-color: #E0E0E0;
+}
+.inv-cont-main-title {
+  padding: 4px 12px;
+  background-color: #fff;
+  display: inline-block;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  margin-bottom: -1px;
+}
