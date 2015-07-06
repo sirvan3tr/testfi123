@@ -20,9 +20,25 @@ require_once('libraries/PHPMailer.php');
 // load the registration class
 require_once('classes/Registration.php');
 
+// load the login class
+require_once('classes/Login.php');
+
+// load the Company class
+require_once('classes/Company.php');
+
 // create the registration object. when this object is created, it will do all registration stuff automatically
 // so this single line handles the entire registration process.
-$registration = new Registration();
+$login = new Login();
+$userid = $login->returnUserdata($login->getUsername(), 'user_id');
+$userActiveLevel = $login->returnUserdata($login->getUsername(), 'user_active_lvl');
 
-// showing the register view (with the registration form, and messages/errors)
-include("views/register.php");
+$registration = new Registration($userid, $userActiveLevel);
+$company = new Company($userid, $userActiveLevel, 2);
+
+// ... ask if we are logged in here:
+if ($login->isUserLoggedIn() == true) {
+  include("views/postregister.php");
+} else {
+  // showing the register view (with the registration form, and messages/errors)
+  include("views/register.php");
+}

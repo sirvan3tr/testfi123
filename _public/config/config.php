@@ -13,17 +13,23 @@
  *          by the way, it's bad style to use "root", but for development it will work.
  * DB_PASS: the password of the above user
  */
-
-define("DB_HOST", "127.0.0.1");
-define("DB_NAME", "fi_platform");
-define("DB_USER", "root");
-define("DB_PASS", "");
-/*
-define("DB_HOST", "127.0.0.1");
-define("DB_NAME", "fundinh9_fiplatform");
-define("DB_USER", "fundinh9_showcse");
-define("DB_PASS", "WuTuL00K!ngAt");
-*/
+ $srvernme = $_SERVER['SERVER_NAME'];
+ if ($srvernme=='localhost') {
+  define("DB_HOST", "127.0.0.1");
+  define("DB_NAME", "fi_platform");
+  define("DB_USER", "root");
+  define("DB_PASS", "mysqlpass123");
+} elseif ($srvernme=='filocalhost') {
+  define("DB_HOST", "127.0.0.1");
+  define("DB_NAME", "fi_platform");
+  define("DB_USER", "root");
+  define("DB_PASS", "");
+} else {
+  define("DB_HOST", "127.0.0.1");
+  define("DB_NAME", "fundinh9_fiplatform");
+  define("DB_USER", "fundinh9_showcse");
+  define("DB_PASS", "WuTuL00K!ngAt");
+}
 /**
  * Configuration for: Cookies
  * Please note: The COOKIE_DOMAIN needs the domain where your app is,
@@ -79,17 +85,19 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://localhost/fi/_public/password_reset.php");
+//define("EMAIL_PASSWORDRESET_URL", "http://localhost/fi/_public/password_reset.php");
+define("EMAIL_PASSWORDRESET_URL", "http://fundinginvoice.com/platform/password_reset.php");
 define("EMAIL_PASSWORDRESET_FROM", "fundinginvoice.automatic@gmail.com");
 define("EMAIL_PASSWORDRESET_FROM_NAME", "Funding Invoice");
-define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for PROJECT XY");
+define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for Funding Invoice");
 define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your password:");
 
 /**
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://localhost/fi/_public/register.php");
+//define("EMAIL_VERIFICATION_URL", "http://localhost/fi/_public/register.php");
+define("EMAIL_VERIFICATION_URL", "http://fundinginvoice.com/platform/register.php");
 define("EMAIL_VERIFICATION_FROM", "fundinginvoice.automatic@gmail.com");
 define("EMAIL_VERIFICATION_FROM_NAME", "Funding Invoice");
 define("EMAIL_VERIFICATION_SUBJECT", "Account activation for Funding Invoice");

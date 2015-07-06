@@ -15,7 +15,6 @@ foreach ($debtors as $debtor) {
 }
 
 if (isset($_POST["new_invoice"])) {
-
     function sendVerificationEmail($htmlbody, $useremailad, $mailsubject) {
         $mail = new PHPMailer;
         // use SMTP or use mail()
@@ -70,7 +69,7 @@ if (isset($_POST["new_invoice"])) {
     // Setup directory for file upload
     // uploads/$YYYY/userId_$id/$timestamp_$date/
     $t = time().'_'.date("Y-m-d");
-    $target_dir = "uploads/".date("Y")."/userId_".$person->user_id."/".$t."/";
+    $target_dir = "uploads/invoice_files/".date("Y")."/userId_".$person->user_id."/".$t."/";
     // Check if direcotry exists, else create it
     if (!file_exists($target_dir)) { mkdir($target_dir, 0755, true); }
 
@@ -93,7 +92,7 @@ if (isset($_POST["new_invoice"])) {
             $uploadOk = 0;
         }
         // Check file size
-        if ($_FILES["invoice_file"]["size"] > 5242880) { // 5MB
+        if ($_FILES[$filesArray[$i]]["size"] > 5242880) { // 5MB
             array_push($messages, "Sorry, your file is too large.");
             $uploadOk = 0;
         }
@@ -128,7 +127,7 @@ if (isset($_POST["new_invoice"])) {
                 rmdir($target_dir);
             }
         }
-        
+
     } // end of for loop
 
     // if sum is 3 then there is a successful upload of all files.

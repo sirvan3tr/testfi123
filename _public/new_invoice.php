@@ -6,10 +6,17 @@ require_once('config/setup.php');
 // load the login class
 require_once('classes/Login.php');
 
+// load the Company class
+require_once('classes/Company.php');
+
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
 $login = new Login();
 
+$userid = $login->returnUserdata($login->getUsername(), 'user_id');
+$userActiveLevel = $login->returnUserdata($login->getUsername(), 'user_active_lvl');
+
+$company = new Company($userid, $userActiveLevel, 1);
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
@@ -24,13 +31,9 @@ if ($login->isUserLoggedIn() == true) {
         if (isset($messages)) { // if new invoice has been submitted there will be a message, form will be hidden
         	include('views/ty.php');
         } else {
-			require_once('classes/new_company.php');
-	        include("views/new_company.php");   
+	        include("views/new_company.php");
 	        include("views/new_invoice.php");
         }
-        ?>
-        <script type="text/javascript" src="static/js/new_company.js"></script>
-        <?php
     } else if($person->user_type == 2) { // Buyer/Investor has a user_type equal to 2
         echo "You must be a invoice seller to submit new invoices!";
     }
@@ -39,31 +42,3 @@ if ($login->isUserLoggedIn() == true) {
 }
 
 ?>
-<script type="text/javascript">
-$(function () {
-	/*
-	$(document).on('click', "#new_invoice_btn", function (e) {
-	    e.preventDefault();
-	    var data = $("#new_invoice_form").serialize();
-	    console.log(data);
-	    
-	    
-	    $.ajax({ url: 'classes/invoice.php',
-	        type: 'post',
-	        data: data,
-	         beforeSend: function ( xhr ) {
-	        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-	        },
-	        success: function(data) {
-	            alert('Success');
-	        },
-	        error: function (data) {
-	            alert("There was an error. Image could not be added, please try again");
-	        } // Success function
-	    }); // Ajax Function
-
-
-	});*/
-
-})
-</script>

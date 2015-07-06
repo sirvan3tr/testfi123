@@ -5,14 +5,14 @@
     <h1>New Invoice</h1>
     <p>Upload your invoice files in no time, upon successful submission we will review it and approve it in no time!</p>
     <hr />
-    <form 
+    <form
         method="post"
-        action="new_invoice.php" 
+        action="new_invoice.php"
         enctype="multipart/form-data"
         id="new_invoice_form"
         class="form-horizontal"
         name="new_invoice_form"
-        onsubmit="return validateForm()" 
+        onsubmit="return validateForm()"
     >
         <div class="form-group">
             <label for="customer" class="col-sm-1 control-label">Customer</label>
@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for="invoice_number" class="col-sm-1 control-label">Invoice Number:</label>
             <div class="col-sm-2"><input id="invoice_number" type="text" name="invoice_number" class="form-control" onblur="isIntCheck('invoice_number')" required /></div>
-        
+
             <label for="invoice_value" class="col-sm-1 control-label">Face Value:</label>
             <div class="col-sm-2"><input id="invoice_value" type="text" name="invoice_value" class="form-control" onblur="isIntCheck('invoice_value')" required /></div>
 
@@ -75,19 +75,19 @@
         <div class="form-group">
             <label class="col-sm-1 control-label">Invoice file:</label>
             <div class="col-sm-2">
-                <input type="file" name="invoice_file" id="invoice_file" required>
+                <input type="file" name="invoice_file" id="invoice_file" required />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">Purchase Order:</label>
             <div class="col-sm-2">
-                <input type="file" name="purchase_order" id="purchase_order"required>
+                <input type="file" name="purchase_order" id="purchase_order" required />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label">Other:</label>
             <div class="col-sm-2">
-                <input type="file" name="other_file" id="other_file"required>
+                <input type="file" name="other_file" id="other_file" required />
             </div>
         </div>
         <hr />

@@ -1,15 +1,4 @@
 <?php
-
-/**
- * A simple PHP Login Script / ADVANCED VERSION
- * For more versions (one-file, minimal, framework-like) visit http://www.php-login.net
- *
- * @author Panique
- * @link http://www.php-login.net
- * @link https://github.com/panique/php-login-advanced/
- * @license http://opensource.org/licenses/MIT MIT License
- */
-
 // check for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     exit('Sorry, this script does not run on a PHP version smaller than 5.3.7 !');
@@ -36,15 +25,25 @@ require_once('classes/Login.php');
 $login = new Login();
 
 // ... ask if we are logged in here:
+// User has 2 level of activation
+// Level 1: user has registered via email and has confirmed their email.
+// Level 2: User needs to upload documents and add details of company
+// Once those 2 levels are satisfied the user has access to the platform
 if ($login->isUserLoggedIn() == true) {
-    $userid = $login->returnUserdata($login->getUsername(), 'user_id'); 
+    $userid = $login->returnUserdata($login->getUsername(), 'user_id');
+    $usractiveLevel = $login->returnUserdata($login->getUsername(), 'user_active_lvl');
     // the user is logged in. Now determine the user type
-    if($login->getUsertype() == 1) { // Buyer/Investor has a user_type equal to 1
-        include("views/seller_logged_in.php");
-    } else if($login->getUsertype() == 2) { // Buyer/Investor has a user_type equal to 2
-        include("views/buyer_logged_in.php");
+    if ($usractiveLevel==4) {
+      if($login->getUsertype() == 1) { // Buyer/Investor has a user_type equal to 1
+          include("views/seller_logged_in.php");
+      } else if($login->getUsertype() == 2) { // Buyer/Investor has a user_type equal to 2
+          include("views/buyer_logged_in.php");
+      }
+    } else {
+      echo 'You are not active, please add company and documents'.
+            '<br> <a href="register.php">Click here to continue...</a>';
     }
-    
+
 } else {
     // the user is not logged in. you can do whatever you want here.
     include("views/not_logged_in.php");

@@ -29,14 +29,20 @@ class Registration
      * @var array collection of success / neutral messages
      */
     public  $messages                 = array();
+    /**
+     * @var bool success state of registration
+     */
+    public  $docUpload_successful     = false;
 
     /**
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$login = new Login();"
      */
-    public function __construct()
+    public function __construct($userid, $userActiveLevel)
     {
         session_start();
+        $this->userid = $userid;
+        $this->userActiveLevel = $userActiveLevel;
 
         // if we have such a POST request, call the registerNewUser() method
         if (isset($_POST["register"])) {
@@ -44,6 +50,13 @@ class Registration
         // if we have such a GET request, call the verifyNewUser() method
         } else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
             $this->verifyNewUser($_GET["id"], $_GET["verification_code"]);
+        } else if (isset($_POST['postregister'])) {
+          $this->docUpload(
+            $_FILES["financial_accounts"],
+            $_FILES["bank_statements"],
+            $_FILES["management_accounts"],
+            $_FILES["other_doc"]
+          );
         }
     }
 
@@ -243,5 +256,126 @@ class Registration
                 $this->errors[] = MESSAGE_REGISTRATION_ACTIVATION_NOT_SUCCESSFUL;
             }
         }
+    }
+
+    /**
+     * Handles users post registration of document uploads.
+     */
+    private function docUpload($financial_accounts, $bank_statements, $management_accounts, $other_doc)
+    {
+      $messages = array('First message.');
+      $alluploadsOK = 0;
+      $filesArray = ["financial_accounts", "bank_statements"];
+      $filesVar = [$financial_accounts, $bank_statements];
+      if (empty($financial_accounts['name'])) {
+        // error, this should not be empty.
+        echo 'wtf';
+      }
+      if (empty($bank_statements['name'])) {
+        // error, this should not be empty.
+      }
+      if (!empty($management_accounts['name'])) {
+        array_push($filesArray, "management_accounts");
+        array_push($filesVar, $management_accounts);
+      }
+      if (!empty($other_doc['name'])) {
+        array_push($filesArray, "other_doc");
+        array_push($filesVar, $other_doc);
+      }
+      // Setup directory for file upload
+      $t = time().'_'.date("Y-m-d");
+      $target_dir = "uploads/userfiles/".date("Y")."/userId_".$this->userid."/";
+      // Check if direcotry exists, else create it
+      if (!file_exists($target_dir)) { mkdir($target_dir, 0755, true); }
+
+      // ------------------------------ //
+      // --- FILE UPLOAD VALIDATION --- //
+      // ------------------------------ //
+      $fileError = array();
+      $fileNames = array();
+      for ($i=0; $i < count($filesArray); $i++) {
+          $target_file = $target_dir . basename($filesVar[$i]["name"]);
+          array_push($fileNames, basename($filesVar[$i]["name"]));
+          $uploadOk = 1;
+          $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+          // Check if file already exists
+          if (file_exists($target_file)) {
+              array_push($messages, "Sorry, file already exists.");
+              $uploadOk = 0;
+          }
+          // Check file size
+          if ($filesVar[$i]["size"] > 5242880) { // 5MB
+              array_push($messages, "Sorry, your file is too large.");
+              $uploadOk = 0;
+          }
+          // Allow certain file formats
+          if($fileType != "pdf" && $fileType != "docx" && $fileType != "doc"
+          && $fileType != "gif" && $fileType != "jpg" && $fileType != "png"
+          && $fileType != "jpeg") {
+              array_push($messages, "Sorry, only PDF, doc, docx, jpg, jpeg, png and gif file formats are allowed.");
+              $uploadOk = 0;
+          }
+          // Check if $uploadOk is set to 0 by an error
+          if ($uploadOk == 0) {
+              array_push($messages, "Sorry, your file was not uploaded.");
+              // There was an error, delete ull uploaded files.
+              for ($i=0; $i < count($filesArray); $i++) {
+                  $thefile = $target_dir . basename($filesVar[$i]["name"]);
+                  unlink($thefile);
+              }
+              rmdir($target_dir);
+          // if everything is ok, try to upload file
+          } else {
+              if (move_uploaded_file($filesVar[$i]["tmp_name"], $target_file)) {
+                  array_push($messages, "The file ". basename( $_FILES[$filesArray[$i]]["name"]). " has been uploaded.");
+                  $fileError[$i] = 1;
+              } else {
+                  array_push($messages, "Sorry, there was an error uploading your file.");
+                  // There was an error, delete ull uploaded files.
+                  for ($i=0; $i < count($filesArray); $i++) {
+                      $thefile = $target_dir . basename($filesVar[$i]["name"]);
+                      unlink($thefile);
+                  }
+                  rmdir($target_dir);
+              }
+          }
+
+      } // end of for loop
+
+      // if sum=size of files array then there is a successful upload of all files.
+      $sum = array_sum($fileError);
+      array_push($messages, $sum);
+      array_push($messages, count($filesArray));
+      if($sum==count($filesArray)) {
+
+          // Submit Files name to invoice_fie db table
+          if ($this->databaseConnection()) {
+            for ($i=0; $i < count($fileNames); $i++) {
+                // write new users files data into database
+                $query_new_userfile_insert = $this->db_connection->prepare('INSERT INTO user_files (file_name, file_location, users_id) VALUES(:file_name, :file_location, :users_id)');
+                $query_new_userfile_insert->bindValue(':file_name', $fileNames[$i], PDO::PARAM_STR);
+                $query_new_userfile_insert->bindValue(':file_location', $target_dir, PDO::PARAM_STR);
+                $query_new_userfile_insert->bindValue(':users_id', intval(trim($this->userid)), PDO::PARAM_INT);
+                $query_new_userfile_insert->execute();
+            }
+            // try to update user with specified information
+            if ($this->userActiveLevel==1) {
+              $userActiveLevel = 3;
+            } else {
+              $userActiveLevel = 2;
+            }
+            $query_update_user = $this->db_connection->prepare('UPDATE users SET user_active_lvl = :userActiveLevel WHERE user_id = :user_id');
+            $query_update_user->bindValue(':userActiveLevel', intval(trim($userActiveLevel)), PDO::PARAM_INT);
+            $query_update_user->bindValue(':user_id', intval(trim($this->userid)), PDO::PARAM_INT);
+            $query_update_user->execute();
+          }
+          $messages[0] = 'Your invoice has been uploaded for review, please await our confirmation!';
+          $this->docUpload_successful = true;
+          //$htmltextun = '';
+          //sendVerificationEmail($htmltextun, $person->user_email, 'FI - New Invoice Confirmation');
+      } else {
+          $messages[0] = 'An error has occured, please ensure all fields are correctly filled in.';
+      }
     }
 }

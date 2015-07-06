@@ -3,7 +3,7 @@
 <div class="alert alertinfo" role="alert">
 	Welcome <span class="glyphicon glyphicon-user"></span> <?php echo $login->getUsername(); ?>
 	<div class="fr">
-		<a href="index.php?logout"><span class="glyphicon glyphicon-log-out"></span> <?php echo WORDING_LOGOUT; ?></a> - 
+		<a href="index.php?logout"><span class="glyphicon glyphicon-log-out"></span> <?php echo WORDING_LOGOUT; ?></a> -
 		<a href="edit.php"><span class="glyphicon glyphicon-wrench"></span> <?php echo WORDING_EDIT_USER_DATA; ?></a>
 	</div>
 </div>
@@ -20,23 +20,65 @@
 	  <div class="col-md-6">
 
 	  	<h3 class="blue zero-margtop">Invoice Statistics</h3>
+			<?php
+				$under_review = ORM::for_table('invoice')
+					->where('author_id', $userid)
+					->where('status', 1)
+					->count();
+				$traded = ORM::for_table('invoice')
+					->where('author_id', $userid)
+					->where('status', 3)
+					->count();
+				$purchased = ORM::for_table('invoice')
+					->where('author_id', $userid)
+					->where('status', 4)
+					->count();
+				$expired = ORM::for_table('invoice')
+					->where('author_id', $userid)
+					->where('status', 5)
+					->count();
+				$completed = ORM::for_table('invoice')
+					->where('author_id', $userid)
+					->where('status', 6)
+					->count();
+			?>
 	  		<div class="invoice_stats_parent">
-	  			<div class="invoice_stat_el">Under Review<span class="invoice_stat_no">4</span><span class="invoice_stat_val">£200,000</span></div>
-	  			<div class="invoice_stat_el">Info Required<span class="invoice_stat_no">2</span><span class="invoice_stat_val">£64,000</span></div>
-	  			<div class="invoice_stat_el">Rejected<span class="invoice_stat_no">1</span><span class="invoice_stat_val">£105,000</span></div>
-	  			<div class="invoice_stat_el">Live<span class="invoice_stat_no">5</span><span class="invoice_stat_val">£150,000</span></div>
-	  			<div class="invoice_stat_el">Funded<span class="invoice_stat_no">4</span><span class="invoice_stat_val">£100,000</span></div>
+	  			<div class="invoice_stat_el">Under Review<span class="invoice_stat_no"><?php echo $under_review ?></span><span class="invoice_stat_val">£</span></div>
+	  			<div class="invoice_stat_el">Traded<span class="invoice_stat_no"><?php echo $traded ?></span><span class="invoice_stat_val">£</span></div>
+	  			<div class="invoice_stat_el">Purchased<span class="invoice_stat_no"><?php echo $purchased ?></span><span class="invoice_stat_val">£</span></div>
+	  			<div class="invoice_stat_el">Expired<span class="invoice_stat_no"><?php echo $expired ?></span><span class="invoice_stat_val">£</span></div>
+	  			<div class="invoice_stat_el">Completed<span class="invoice_stat_no"><?php echo $completed ?></span><span class="invoice_stat_val">£</span></div>
 	  			<div class="clear"></div>
 	  		</div>
 	    <p>To get going you will need to upload an Invoice for us to approve and upon approval you can set automatic trade where your invoice will be automatically placed on the market for potential investors and buyers to purchase, else you can get a notification and decide when to place your trade after approval.</p>
 			<a href="new_invoice.php" type="button" class="btn btn-warning">
 				<span class="glyphicon glyphicon-pencil"></span> New Invoice
 			</a>
+	  </div>
+	  <div class="col-md-3">
+	  	<h3>Your Company</h3>
+			<?php
+				$company = ORM::for_table('company')
+					->where('users_id', $userid)
+					->where('company_type', 2)
+					->find_one();
 
+				echo '<strong>Name:</strong> '.$company->name.'<br />';
+				echo '<strong>Industry:</strong> '.$company->industry.'<br />';
+				echo '<strong>Revenue:</strong> '.$company->revenue.'<br />';
+				echo '<strong>Contact Name:</strong> '.$company->contact_name.'<br />';
+				echo '<strong>Address 1:</strong> '.$company->contact_address_1.'<br />';
+				echo '<strong>Address 2:</strong> '.$company->contact_address_2.'<br />';
+				echo '<strong>Address 3:</strong> '.$company->contact_address_3.'<br />';
+				echo '<strong>PostCode:</strong> '.$company->contact_address_postcode.'<br />';
+			?>
 	  </div>
-	  <div class="col-md-6">
-	  	<p>Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.</p>
-	  </div>
+		<div class="col-md-3">
+			<h3>Notifications</h3>
+			<p>
+				You have no notifications.
+			</p>
+		</div>
 	</div>
   </div><!-- home tab end -->
   <div role="tabpanel" class="tab-pane" id="active_invoices">

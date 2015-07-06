@@ -3,13 +3,6 @@
 <!-- show registration form, but only if we didn't submit already -->
 <?php if (!$registration->registration_successful && !$registration->verification_successful) { ?>
 <div class="row">
-  <div class="col-md-12">
-    <center>
-      
-    </center>
-  </div>
-</div>
-<div class="row">
   <div class="col-md-8">
     <center>
       <h1>Get Started, Register Your Business</h1>

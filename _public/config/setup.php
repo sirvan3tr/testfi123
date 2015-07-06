@@ -9,17 +9,23 @@ require_once 'libraries/idiorm.php';
 
 // Database configuration with the IDIORM library
 
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$database = 'fi_platform';
-
-/*
-$host = 'localhost';
-$user = 'fundinh9_showcse';
-$pass = 'WuTuL00K!ngAt';
-$database = 'fundinh9_fiplatform';
-*/
+$srvernme = $_SERVER['SERVER_NAME'];
+if ($srvernme=='localhost') {
+  $host = 'localhost';
+  $user = 'root';
+  $pass = 'mysqlpass123';
+  $database = 'fi_platform';
+} elseif ($srvernme=='filocalhost') {
+  $host = 'localhost';
+  $user = 'root';
+  $pass = '';
+  $database = 'fi_platform';
+} else {
+  $host = 'localhost';
+  $user = 'fundinh9_showcse';
+  $pass = 'WuTuL00K!ngAt';
+  $database = 'fundinh9_fiplatform';
+}
 
 ORM::configure("mysql:host=$host;dbname=$database");
 ORM::configure('username', $user);
