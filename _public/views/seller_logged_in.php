@@ -8,6 +8,34 @@
 	</div>
 </div>
 
+<center><h3 class="zero-margtop">Simple and Hassle Free</h3></center>
+<div class="mk-grid vc_row-fluid page-section-content"><div class="mk-padding-wrapper">
+	<div style="" class="vc_col-sm-3 wpb_column column_container ">
+			<div id="mk-icon-box-5599f496505df" class="mk-box-icon-2 box-align-center ">    <div class="mk-box-icon-2-icon size-48"><i class="mk-li-monitor"></i></div>    <h3 class="mk-box-icon-2-title" style="font-weight:bold; font-size:14px; color:#333333;  0 15px 0;">1. APPLY ONLINE</h3>    <div class="mk-box-icon-2-content"><p>You have already completed this step</p>
+</div></div>
+	</div>
+	<div style="" class="vc_col-sm-3 wpb_column column_container ">
+			<div id="mk-icon-box-5599f49650ae7" class="mk-box-icon-2 box-align-center ">    <div class="mk-box-icon-2-icon size-48"><i class="mk-li-file"></i></div>    <h3 class="mk-box-icon-2-title" style="font-weight:bold; font-size:14px; color:#333333;  0 15px 0;">2. UPLOAD AN INVOICE</h3>    <div class="mk-box-icon-2-content"><p>Click the button below to get going and upload an invoice for verification.</p>
+			<a href="new_invoice.php" type="button" class="btn btn-warning">
+				<span class="glyphicon glyphicon-pencil"></span> New Invoice
+			</a>
+
+</div></div>
+	</div>
+	<div style="" class="vc_col-sm-3 wpb_column column_container ">
+			<div id="mk-icon-box-5599f49650fe4" class="mk-box-icon-2 box-align-center ">    <div class="mk-box-icon-2-icon size-48"><i class="mk-li-money"></i></div>    <h3 class="mk-box-icon-2-title" style="font-weight:bold; font-size:14px; color:#333333; 0 15px 0;">3. VERIFICATION</h3>    <div class="mk-box-icon-2-content"><p>We’ll verify your invoice and your trade will go live where it will be purchased by our professional investors.</p>
+</div></div>
+	</div>
+	<div style="" class="vc_col-sm-3 wpb_column column_container ">
+		<div id="mk-icon-box-5599f496514e8" class="mk-box-icon-2 box-align-center ">
+			<div class="mk-box-icon-2-icon size-48"><i class="mk-li-coffee"></i></div>    <h3 class="mk-box-icon-2-title" style="font-weight:bold; font-size:14px; color:#333333;  0 15px 0;">4. Receive advance</h3>    <div class="mk-box-icon-2-content"><p>Grab a cup of coffee – you’ve made your first trade! Your advance will be available&nbsp;to you within a&nbsp;working&nbsp;day. We’re sure you’ll be back to take advantage of our loyalty programme.</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	<div class="clearboth"></div>
+</div>
+
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
   <li role="presentation"><a href="#active_invoices" aria-controls="active_invoices" role="tab" data-toggle="tab">Active Invoices</a></li>
@@ -51,9 +79,6 @@
 	  			<div class="clear"></div>
 	  		</div>
 	    <p>To get going you will need to upload an Invoice for us to approve and upon approval you can set automatic trade where your invoice will be automatically placed on the market for potential investors and buyers to purchase, else you can get a notification and decide when to place your trade after approval.</p>
-			<a href="new_invoice.php" type="button" class="btn btn-warning">
-				<span class="glyphicon glyphicon-pencil"></span> New Invoice
-			</a>
 	  </div>
 	  <div class="col-md-3">
 	  	<h3>Your Company</h3>

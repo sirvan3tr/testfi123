@@ -64,6 +64,14 @@ span.stepnum {
   color: #fff;
   font-weight: bold;
 }
+/* Footer
+------------------------------------------------------ */
+.main_footer {
+  border-top: 1px solid #ccc;
+  margin: 20px 0 0 0;
+  font-size: 11px;
+  padding: 5px;
+}
 /* Bootstrap re-styling
 ------------------------------------------------------ */
 .form-horizontal .control-label {
@@ -204,7 +212,7 @@ table.table tr th {
   border-right: 1px solid #DBDBDB;
   padding: 3px 6px;
 }
-/* 
+/*
 ------------------------------------------------------ */
 #pheader {
   background: url(http://subtlepatterns.com/patterns/congruent_pentagon.png);
@@ -267,4 +275,16 @@ table.table tr th {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   margin-bottom: -1px;
+}
+/*
+------------------------------------------------------ */
+.vc_col-sm-3.wpb_column.column_container {
+  width: 24%;
+  float: left;
+  text-align: center;
+  margin: 10px 5px;
+  height: 166px;
+  padding: 0 5px;
+  background-color: #749891;
+  color: #fff;
 }
