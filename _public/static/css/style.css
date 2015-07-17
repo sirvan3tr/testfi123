@@ -288,3 +288,25 @@ table.table tr th {
   background-color: #749891;
   color: #fff;
 }
+
+/* Buyers Side of CSS
+------------------------------------------------------ */
+.invoice_purchase_details {
+  width: 100%;
+  padding: 5px;
+  background-color: #3C9E9E;
+  color: #fff;
+  border-radius: 4px;
+}
+.invoice_purchase_details .ipd_final {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px 23px !important;
+  text-align: right;
+}
+.invoice_purchase_details table.table tr td{
+  border: 0;
+  padding: 0;
+  line-height: 16px;
+  border-bottom: 1px dashed #53CACA;
+}

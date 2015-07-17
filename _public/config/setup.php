@@ -1,7 +1,7 @@
 <?php
 // Includes
-$absHOST = "http://fiplatform/";
-require_once 'libraries/idiorm.php';
+$absHOST = realpath(__DIR__ . '/..').'/libraries/idiorm.php';
+require_once $absHOST;
 
 // Session. Pass your own name if you wish.
 //session_name('fi_platform_session');
@@ -10,17 +10,17 @@ require_once 'libraries/idiorm.php';
 // Database configuration with the IDIORM library
 
 $srvernme = $_SERVER['SERVER_NAME'];
-if ($srvernme=='localhost') {
+if ($srvernme=='localhost') { // Sirvan_PC
   $host = 'localhost';
   $user = 'root';
   $pass = 'mysqlpass123';
   $database = 'fi_platform';
-} elseif ($srvernme=='filocalhost') {
+} elseif ($srvernme=='filocalhost') { // Sirvan_MAC
   $host = 'localhost';
   $user = 'root';
   $pass = '';
   $database = 'fi_platform';
-} else {
+} else { // live Bluehost
   $host = 'localhost';
   $user = 'fundinh9_showcse';
   $pass = 'WuTuL00K!ngAt';
